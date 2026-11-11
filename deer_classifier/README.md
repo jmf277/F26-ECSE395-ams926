@@ -35,7 +35,7 @@ the deer print. It fails on missing frames, invalid scores, gate inconsistency,
 errors, resets or incomplete phases. Repeat with different deer and non-deer
 prints before proceeding to deterrence and photo-capture integration.
 
-Host checks use no ML dependencies:
+Host checks use no ML dependencies; the contract test of [`firmware/deer_presence.hpp`](firmware/deer_presence.hpp) also needs a Clang- or GCC-style C++17 compiler (`c++`, `clang++` or `g++` on the path, or `CXX` naming one):
 
 ```powershell
 python -m unittest discover -s tests -v
@@ -199,6 +199,8 @@ OV5640 camera path and loads the raw retained model directly. The older
 requiring Espressif's generated `ESPDetDetect` component; it is not used by the
 standalone test. Both use the shared temporal gate. Camera/inference failures
 and invalid C++ scores clear history.
+
+The laptop recognition path in [Daniel's deer_deterrent](https://github.com/dlim0/26-ECSE395-dsl79/tree/recognition-trials-and-controls/deer_deterrent) uses this folder rather than the on-device model. Its [laptop client](https://github.com/dlim0/26-ECSE395-dsl79/blob/recognition-trials-and-controls/deer_deterrent/tools/laptop_classifier.py) (with [its tests](https://github.com/dlim0/26-ECSE395-dsl79/blob/recognition-trials-and-controls/deer_deterrent/tools/test_laptop_classifier.py)) downloads each photo from the [Wi-Fi camera program](https://github.com/dlim0/26-ECSE395-dsl79/tree/recognition-trials-and-controls/deer_deterrent/experiments/camera-wifi-bringup), scores it with the trained float checkpoint on the computer, loading `espdet_compat.py` from this folder (`--model-project`), and returns a verdict to the board. Two deer verdicts among the last three photos confirm, on the board and in the client, which applies a copy of `temporal_gate.py`.
 
 ## Remaining measurements
 
