@@ -7,6 +7,17 @@ light, sound, or image-saving behavior. The current model has weak historical
 validation results; a successful printed-image test is a smoke test, not proof
 of field accuracy.
 
+The [recorded trial program](https://github.com/dlim0/26-ECSE395-dsl79/blob/recognition-trials-and-controls/deer_deterrent/experiments/deer-classifier/README.md)
+in [Daniel's deer_deterrent](https://github.com/dlim0/26-ECSE395-dsl79/tree/recognition-trials-and-controls/deer_deterrent)
+is a separate ESP-IDF application that runs an identical copy of
+`deer_classifier/artifacts/deer.espdl` with light, sound and image saving
+added: a computer on USB commands the trials on the assembled unit and saves
+every frame the model scored, and, when the program is armed, a confirmed deer
+starts the light and buzzer. Its checks on the assembled board are in
+[BOARD_CHECKS.md](https://github.com/dlim0/26-ECSE395-dsl79/blob/recognition-trials-and-controls/deer_deterrent/experiments/deer-classifier/BOARD_CHECKS.md),
+and its [recorded trials](https://github.com/dlim0/26-ECSE395-dsl79/tree/recognition-trials-and-controls/deer_deterrent/tests/recognition)
+of November 4, 2026 were made with printed deer and non-deer pictures.
+
 The target is the **Adafruit ESP32-S3 TFT Feather, 4 MB flash / 2 MB PSRAM**
 with the **Adafruit OV5640 parallel camera breakout**. The older Feather ESP32
 V2 used in the lab folders cannot run this ESP32-S3 model artifact. The camera
